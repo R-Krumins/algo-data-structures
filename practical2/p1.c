@@ -1,3 +1,9 @@
+/* Create records that implement the test, which has 20 questions, 5 answers to each question and a fixed correct answer.
+ * Write an algorithm for the implementation of this test, 
+ * if the order of questions and answers changes with the implementation of each algorithm
+ * and the correct answer is announced after entering the user's answer.
+ * For solution use set properties.*/
+
 #include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -10,12 +16,13 @@
 
 // the data structure of a question
 struct question {
-	char text[MAX_TEXT_LENGHT];
-	char answers[4][MAX_TEXT_LENGHT];
-	int correctAnswer;
+    char text[MAX_TEXT_LENGHT];
+    char answers[4][MAX_TEXT_LENGHT];
+    int correctAnswer;
 };
 
 // this function returns a list of questions
+// here I set properties of the question object/struct
 struct question* getQuestions() {
     static struct question questions[] = {
         {"What is the capital of France?", {"Paris", "Berlin", "Madrid", "Rome"}, 0},
