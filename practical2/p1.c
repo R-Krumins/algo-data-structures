@@ -68,7 +68,7 @@ int main() {
 
     // a list of questinos
     struct question* questions = getQuestions();
-    // answer letters for printing
+    // answer letters
     char aLett[] = {'A', 'B', 'C', 'D'};
 
     // create order lists for questions and answers
@@ -78,7 +78,7 @@ int main() {
     }
     int answerOrder[ANSWER_COUNT];
     for(int i = 0; i < ANSWER_COUNT; i++) {
-        questionOrder[i] = i;
+        answerOrder[i] = i;
     }
     // Seed the random number generator
     srand(time(0));
@@ -113,13 +113,15 @@ int main() {
         // Get user answer and check it
         printf("Answer: ");
         scanf("%c", &userAnswer);
-        
-        if(toupper(userAnswer) == aLett[Q->correctAnswer]) {
+
+        // cool ascii code arithmetic
+        // A - 65 = 0; B - 65 = 1; C - 65 = 2; D - 65 = 3
+        if(answerOrder[toupper(userAnswer) - 65] == Q->correctAnswer) {
             printf("Correct!\n");
             score++;
         }
         else {
-            printf("Incorrect! The correct answer was %c!\n", aLett[Q->correctAnswer]);
+            printf("Incorrect! The correct answer was %s!\n", Q->answers[Q->correctAnswer]);
         }
         
 
@@ -129,7 +131,7 @@ int main() {
         printf("\n\n");
     }
 
-    printf("You got %d/%d questions right!", score, QUESTION_COUNT);
+    printf("You got %d/%d questions right!\n", score, QUESTION_COUNT);
 
     return 0; // return success code 0
 }
